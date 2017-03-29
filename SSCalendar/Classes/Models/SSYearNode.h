@@ -7,6 +7,7 @@
 //
 
 @class SSDayNode;
+#import <Foundation/Foundation.h>
 
 @interface SSYearNode : NSObject
 {

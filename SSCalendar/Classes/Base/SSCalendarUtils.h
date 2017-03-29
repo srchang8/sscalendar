@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Stellar16. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 @interface SSCalendarUtils : NSObject
 
 + (NSBundle *)calendarBundle;

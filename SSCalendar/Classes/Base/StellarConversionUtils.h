@@ -6,6 +6,9 @@
 //  Copyright 2012 Stellar16. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 @interface StellarConversionUtils : NSObject
 
 + (NSDate *)dateFromString:(NSString *)string;
