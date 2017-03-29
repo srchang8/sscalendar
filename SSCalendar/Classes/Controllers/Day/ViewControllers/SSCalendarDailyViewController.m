@@ -116,6 +116,16 @@
         [_dayView reloadData];
     }
 }
+    /*
+     eveyrthing in daily view controller
+     subscreen of hybrid view controller
+    */
+- (void)refreshEveything {
+    [self refresh];
+    [self scrollDayViewToDay];
+    [self selectDayInWeekView];
+    [self reloadDayLabel];
+}
 
 
 #pragma mark - Setter Methods
