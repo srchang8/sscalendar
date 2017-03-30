@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,21 +22,25 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8tO-Lu-hrY" userLabel="Header View">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="308"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8tO-Lu-hrY" userLabel="Header View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="306"/>
                     <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayZ-YB-E2d" customClass="SSCalendarWeekHeaderView">
-                            <rect key="frame" x="-1" y="0.0" width="377" height="18"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayZ-YB-E2d" customClass="SSCalendarWeekHeaderView">
+                            <rect key="frame" x="-1" y="0.0" width="376" height="18"/>
                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="5Dk-rM-qoP" userLabel="Week View">
-                            <rect key="frame" x="0.0" y="18" width="375" height="290"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGx-Tn-mkq" userLabel="Date Label">
+                            <rect key="frame" x="0.0" y="286" width="375" height="20"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="5Dk-rM-qoP" userLabel="Week View">
+                            <rect key="frame" x="0.0" y="38" width="375" height="215"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="N3e-5o-KO1">
                                 <size key="itemSize" width="46" height="43"/>
@@ -45,20 +50,29 @@
                             </collectionViewFlowLayout>
                             <cells/>
                         </collectionView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGx-Tn-mkq" userLabel="Date Label">
-                            <rect key="frame" x="0.0" y="308" width="375" height="20"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="5Dk-rM-qoP" secondAttribute="trailing" id="46E-PG-bhr"/>
+                        <constraint firstItem="5Dk-rM-qoP" firstAttribute="height" secondItem="8tO-Lu-hrY" secondAttribute="height" multiplier="0.815" id="8Y8-Nc-Xay"/>
+                        <constraint firstItem="ayZ-YB-E2d" firstAttribute="top" secondItem="8tO-Lu-hrY" secondAttribute="top" id="Amz-JE-LyM"/>
+                        <constraint firstItem="ayZ-YB-E2d" firstAttribute="width" secondItem="8tO-Lu-hrY" secondAttribute="width" id="Et1-lD-4Qa"/>
+                        <constraint firstAttribute="trailing" secondItem="ayZ-YB-E2d" secondAttribute="trailing" id="FVl-89-xcQ"/>
+                        <constraint firstAttribute="bottom" secondItem="CGx-Tn-mkq" secondAttribute="bottom" id="MA7-fN-W2V"/>
+                        <constraint firstItem="ayZ-YB-E2d" firstAttribute="leading" secondItem="8tO-Lu-hrY" secondAttribute="leading" id="MNm-u7-OMU"/>
+                        <constraint firstItem="CGx-Tn-mkq" firstAttribute="width" secondItem="8tO-Lu-hrY" secondAttribute="width" id="Pos-6i-KH6"/>
+                        <constraint firstItem="CGx-Tn-mkq" firstAttribute="height" secondItem="8tO-Lu-hrY" secondAttribute="height" multiplier="0.085" id="TCv-ne-eLx"/>
+                        <constraint firstItem="5Dk-rM-qoP" firstAttribute="top" secondItem="ayZ-YB-E2d" secondAttribute="bottom" id="azP-MU-RF5"/>
+                        <constraint firstItem="CGx-Tn-mkq" firstAttribute="top" secondItem="5Dk-rM-qoP" secondAttribute="bottom" id="bty-VE-023"/>
+                        <constraint firstAttribute="trailing" secondItem="CGx-Tn-mkq" secondAttribute="trailing" id="crB-ab-sOa"/>
+                        <constraint firstItem="ayZ-YB-E2d" firstAttribute="height" secondItem="8tO-Lu-hrY" secondAttribute="height" multiplier="0.1" id="fsz-EO-t7X"/>
+                        <constraint firstItem="5Dk-rM-qoP" firstAttribute="leading" secondItem="8tO-Lu-hrY" secondAttribute="leading" id="g3g-m3-INf"/>
+                        <constraint firstItem="CGx-Tn-mkq" firstAttribute="leading" secondItem="8tO-Lu-hrY" secondAttribute="leading" id="szT-Cn-9pR"/>
+                        <constraint firstItem="5Dk-rM-qoP" firstAttribute="width" secondItem="8tO-Lu-hrY" secondAttribute="width" id="u9t-LA-IbF"/>
+                    </constraints>
                 </view>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="A3z-11-QeX">
-                    <rect key="frame" x="0.0" y="327" width="375" height="288"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="A3z-11-QeX">
+                    <rect key="frame" x="0.0" y="314" width="375" height="295"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZNC-CF-zKm">
                         <size key="itemSize" width="50" height="50"/>
@@ -68,9 +82,8 @@
                     </collectionViewFlowLayout>
                     <cells/>
                 </collectionView>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r1i-kO-cBb">
-                    <rect key="frame" x="0.0" y="615" width="375" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r1i-kO-cBb">
+                    <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                     <color key="backgroundColor" red="0.23672278090000001" green="0.41792716369999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <items>
                         <barButtonItem title="Today" id="REc-ri-XmK" userLabel="Today Bar Button Item">
@@ -82,12 +95,29 @@
                 </toolbar>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <point key="canvasLocation" x="57.5" y="54.5"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="A3z-11-QeX" secondAttribute="trailing" id="1IA-WH-KVo"/>
+                <constraint firstItem="8tO-Lu-hrY" firstAttribute="width" secondItem="1" secondAttribute="width" id="72C-Kd-q2R"/>
+                <constraint firstItem="r1i-kO-cBb" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="8Rk-77-1MY"/>
+                <constraint firstItem="8tO-Lu-hrY" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.5" id="QOv-xc-80q"/>
+                <constraint firstItem="A3z-11-QeX" firstAttribute="width" secondItem="1" secondAttribute="width" id="RAX-dm-XTH"/>
+                <constraint firstItem="A3z-11-QeX" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="UX4-bV-YHk"/>
+                <constraint firstItem="8tO-Lu-hrY" firstAttribute="top" secondItem="1" secondAttribute="top" id="WrM-F1-l4m"/>
+                <constraint firstAttribute="trailing" secondItem="8tO-Lu-hrY" secondAttribute="trailing" id="YoT-j3-CSQ"/>
+                <constraint firstAttribute="bottom" secondItem="r1i-kO-cBb" secondAttribute="bottom" id="cAL-ow-yEM"/>
+                <constraint firstItem="8tO-Lu-hrY" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="cXG-7D-Wj8"/>
+                <constraint firstItem="A3z-11-QeX" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.4" id="nbn-Qo-gnk"/>
+                <constraint firstItem="r1i-kO-cBb" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.1" id="nvb-2h-cDl"/>
+                <constraint firstItem="r1i-kO-cBb" firstAttribute="width" secondItem="1" secondAttribute="width" id="ouz-ch-s86"/>
+                <constraint firstAttribute="trailing" secondItem="r1i-kO-cBb" secondAttribute="trailing" id="vXS-hx-uem"/>
+                <constraint firstItem="r1i-kO-cBb" firstAttribute="top" secondItem="A3z-11-QeX" secondAttribute="bottom" id="zaD-cp-TAy"/>
+            </constraints>
+            <point key="canvasLocation" x="51.5" y="89.5"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina5_5.fullscreen"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
 </document>

@@ -11,7 +11,9 @@
 @interface SSColors : NSObject
 
 #define COLOR_PRIMARY @"0459BE"
-#define COLOR_SECONDARY @"FF1300"
+//blue
+#define COLOR_SECONDARY @"4F83FC"
+// red #define COLOR_SECONDARY @"FF1300"
 #define COLOR_BACKGROUND_OFF_WHITE @"F8F8F8"
 #define COLOR_TEXT_TITLE @"555555"
 #define COLOR_TEXT_DARK @"444444"
