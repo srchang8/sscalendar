@@ -82,7 +82,7 @@
     NSMutableArray *newVisibleDays = [NSMutableArray arrayWithObject:_day];
     
     NSInteger index = [SSCalendarUtils numberOfDaysFrom:startDate To:_day.date];
-    
+
     if (_day != [_days objectAtIndex:0])
     {
         SSDayNode *previousDay = [_days objectAtIndex:index - 1];
@@ -94,10 +94,9 @@
         SSDayNode *nextDay = [_days objectAtIndex:index + 1];
         [newVisibleDays addObject:nextDay];
     }
-    
+
     self.visibleDays = newVisibleDays;
     [_view reloadData];
-    
 
     index = [_visibleDays indexOfObject:_day];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];

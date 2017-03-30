@@ -7,9 +7,11 @@
 //
 
 #import "SSCalendarWeekViewController.h"
+#import "SSCalendarMonthlyHeaderView.h"
 #import "SSCalendarWeekLayout.h"
 #import "SSCalendarDayCell.h"
 #import "SSYearNode.h"
+#import "SSMonthNode.h"
 #import "SSDayNode.h"
 #import "SSConstants.h"
 
@@ -25,11 +27,12 @@
         self.view = view;
 
         view.collectionViewLayout = [[SSCalendarWeekLayout alloc] init];
-        view.pagingEnabled = YES;
+        view.pagingEnabled = NO;
         view.allowsMultipleSelection = NO;
 
         NSBundle *bundle = [SSCalendarUtils calendarBundle];
         [view registerNib:[UINib nibWithNibName:@"SSCalendarDayCell" bundle:bundle] forCellWithReuseIdentifier:@"DayCell"];
+        [view registerNib:[UINib nibWithNibName:@"SSCalendarMonthlyHeaderView" bundle:bundle] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MonthlyHeaderView"];
     }
     return self;
 }
@@ -52,7 +55,8 @@
     {
         [newDays addObjectsFromArray:year.days];
     }
-    
+
+    /*
     SSYearNode *firstYear = [_years objectAtIndex:0];
     NSInteger weekday = firstYear.weekdayOfFirstDay - 1;
     
@@ -62,7 +66,7 @@
         //TODO: Constants
         NSInteger count = weekday - i;
         SSDayNode *day = [[SSDayNode alloc] initWithValue:31 - count Month:12 Year:firstYear.value - 1 Weekday:weekday];
-        [newDays insertObject:day atIndex:0];
+        // [newDays insertObject:day atIndex:0];
     }
     
     
@@ -74,9 +78,10 @@
     {
         NSInteger nextYear = ((SSYearNode *) [_years lastObject]).value + 1;
         SSDayNode *day = [[SSDayNode alloc] initWithValue:i Month:1 Year:nextYear Weekday:lastDay.weekday + i];
-        [newDays addObject:day];
+        // [newDays addObject:day];
     }
-    
+    */
+
     days = [newDays copy];
     
     //Set the start date.
@@ -103,26 +108,71 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return _years.count * 12;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return days.count;
-}
+    NSInteger yearIndex = section / 12;
+    NSInteger monthIndex = section % 12;
 
+    SSYearNode *year = [_years objectAtIndex:yearIndex];
+    SSMonthNode *month = [year.months objectAtIndex:monthIndex];
+
+    return month.dayCount + month.weekdayOfFirstDay;
+
+}
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"DayCell";
     SSCalendarDayCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    
     cell.style = SSCalendarDayCellStyleWeekly;
-    cell.day = [days objectAtIndex:indexPath.row];
+
+    NSInteger yearIndex = indexPath.section / 12;
+    NSInteger monthIndex = indexPath.section % 12;
+
+    SSYearNode *year = [_years objectAtIndex:yearIndex];
+    SSMonthNode *month = [year.months objectAtIndex:monthIndex];
+
+    NSInteger dayIndex = indexPath.row - month.weekdayOfFirstDay;
+
+    if (dayIndex >= 0)
+    {
+        SSDayNode *day = [month.dayNodes objectAtIndex:dayIndex];
+        cell.day = day;
+    }
+    else
+    {
+        cell.day = nil;
+    }
 
     return cell;
 }
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    SSCalendarMonthlyHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MonthlyHeaderView" forIndexPath:indexPath];
+
+    NSInteger yearIndex = indexPath.section / 12;
+    NSInteger monthIndex = indexPath.section % 12;
+
+    SSYearNode *year = [_years objectAtIndex:yearIndex];
+    SSMonthNode *month = [year.months objectAtIndex:monthIndex];
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    view.label.text = [[[formatter shortMonthSymbols] objectAtIndex:monthIndex] uppercaseString];
+    view.label.textColor = [UIColor colorWithHexString:COLOR_SECONDARY];
+
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) collectionView.collectionViewLayout;
+    CGFloat labelOffset = month.weekdayOfFirstDay * layout.itemSize.width + 6.0f;
+
+    view.leadingConstraint.constant = labelOffset;
+
+    return view;
+}
+
 
 
 @end

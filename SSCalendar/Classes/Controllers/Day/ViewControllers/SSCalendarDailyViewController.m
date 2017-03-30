@@ -68,7 +68,7 @@
     self.weekViewController = [[SSCalendarWeekViewController alloc] initWithView:_weekView];
     _weekView.dataSource = _weekViewController;
     _weekView.delegate = self;
-    
+     
     self.dayViewController = [[SSCalendarDayViewController alloc] initWithView:_dayView];
     _dayView.dataSource = _dayViewController;
     _dayView.delegate = self;
@@ -116,16 +116,6 @@
         [_dayView reloadData];
     }
 }
-    /*
-     eveyrthing in daily view controller
-     subscreen of hybrid view controller
-    */
-- (void)refreshEveything {
-    [self refresh];
-    [self scrollDayViewToDay];
-    [self selectDayInWeekView];
-    [self reloadDayLabel];
-}
 
 
 #pragma mark - Setter Methods
@@ -167,12 +157,36 @@
 
 - (void)scrollWeekViewToDay
 {
-    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) _weekView.collectionViewLayout;
-    
-    NSInteger row = [SSCalendarUtils numberOfDaysFrom:_weekViewController.startDate To:_day.date];
-    row = row - row % 7;
-    
-    _weekView.contentOffset = CGPointMake(row * layout.itemSize.width, 0);
+    NSDate *start = _weekViewController.startDate;
+    NSDate *current = [SSCalendarUtils dateWithYear:_day.year Month:_day.month Day:1];
+    NSInteger offset = [SSCalendarUtils weekdayOfDate:start] - 1;
+
+    NSInteger weeks = ([SSCalendarUtils numberOfDaysFrom:start To:current] + offset) / 7;
+    NSInteger months = [SSCalendarUtils numberOfMonthsFrom:start To:current];
+
+    // If the first day of a month is not a Sunday, the week is split between two months and takes two rows of height.
+    NSInteger breaks = 0;
+    NSInteger startYear = [SSCalendarUtils yearOfDate:start];
+    NSInteger endYear = [SSCalendarUtils yearOfDate:current];
+    for (NSInteger year = startYear; year <= endYear; year++) {
+        NSInteger startMonth = year == startYear ? [SSCalendarUtils monthOfDate:start] + 1: 1;
+        NSInteger endMonth = year == endYear ? [SSCalendarUtils monthOfDate:current] : 12;
+        for (NSInteger month = startMonth; month <= endMonth; month++) {
+            NSDate *first = [SSCalendarUtils dateWithYear:year Month:month Day:1];
+            NSInteger weekdayOfFirstDay = [SSCalendarUtils weekdayOfDate:first] - 1;
+            if (weekdayOfFirstDay != 0) breaks++;
+        }
+    }
+
+    // height of week row. TODO: define a constant, use it everywhere
+    CGFloat weekHeight = 43.0;
+
+    // height of month name row. TODO: define a constant, use it everywhere
+    CGFloat monthHeight = 34.0;
+
+    CGFloat y = (weeks + breaks) * weekHeight + months * monthHeight;
+
+    [_weekView setContentOffset: CGPointMake(0, y) animated: TRUE];
 }
 
 
@@ -188,10 +202,20 @@
 
 - (void)selectDayInWeekView
 {
-    NSInteger row = [SSCalendarUtils numberOfDaysFrom:_weekViewController.startDate To:_day.date];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-    
+    NSIndexPath *indexPath = [self getIndexPathForDay: _day];
     [_weekView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+}
+
+
+- (NSIndexPath*)getIndexPathForDay:(SSDayNode*)day
+{
+    NSInteger months = [SSCalendarUtils numberOfMonthsFrom:_weekViewController.startDate To:day.date];
+
+    NSDate *first = [SSCalendarUtils dateWithYear:day.year Month:day.month Day:1];
+    NSInteger weekdayOfFirstDay = [SSCalendarUtils weekdayOfDate:first] - 1;
+    NSInteger days = [SSCalendarUtils dayOfDate:day.date];
+
+    return [NSIndexPath indexPathForRow:days-1+weekdayOfFirstDay inSection:months];
 }
 
 
@@ -220,30 +244,26 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    if (scrollView == _weekView)
-    {
-        UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) _weekView.collectionViewLayout;
-    
-        NSInteger sundayIndex = (NSInteger) (_weekView.contentOffset.x / layout.itemSize.width);
-        NSInteger weekdayIndex = _day.weekday;
-        NSInteger index = sundayIndex + weekdayIndex;
-        
-        self.day = [_weekViewController.days objectAtIndex:index];
-        
-        [self scrollDayViewToDay];
-        [self selectDayInWeekView];
-        [self reloadDayLabel];
-    }
-    else if (scrollView == _dayView)
+    if (scrollView == _dayView)
     {
         NSInteger index = (NSInteger) (_dayView.contentOffset.x / _dayView.bounds.size.width);
         SSDayNode *day = [_dayViewController.visibleDays objectAtIndex:index];
-        
+
         self.day = day;
         _dayViewController.day = day;
         [_dayViewController reloadDay];
-        
-        [self scrollWeekViewToDay];
+
+        // make sure that new cell is fully visible, scroll if necessary
+        NSIndexPath *dayPath = [self getIndexPathForDay: day];
+        UIView *cell = [_weekView cellForItemAtIndexPath: dayPath];
+        CGFloat cellTop = [cell frame].origin.y - [_weekView contentOffset].y;
+        CGFloat cellBottom = cellTop + [cell frame].size.height;
+        CGFloat frameBottom = [_weekView frame].size.height;
+        if (cellTop <= 0.0 || cellBottom > frameBottom) {
+            [self scrollWeekViewToDay];
+            [_weekView reloadData]; // make selected day visible
+        }
+
         [self selectDayInWeekView];
         [self reloadDayLabel];
     }

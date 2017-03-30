@@ -13,6 +13,21 @@
 @implementation SSDayNode
 
 
+- (id)initWithDate:(NSDate *)date
+{
+    self = [super init];
+    if (self)
+    {
+        NSDateComponents *comps = [SSCalendarUtils componentsOfDate:date];
+        self.value = comps.day;
+        self.month = comps.month;
+        self.year = comps.year;
+        self.weekday = comps.weekday - 1;
+    }
+    return self;
+
+}
+
 - (id)initWithValue:(NSInteger)value Month:(NSInteger)month Year:(NSInteger)year Weekday:(NSInteger)weekday
 {
     self = [super init];

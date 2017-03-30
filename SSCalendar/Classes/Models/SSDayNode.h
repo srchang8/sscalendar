@@ -6,9 +6,6 @@
 //  Copyright (c) 2013 Stellar16. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
 @interface SSDayNode : NSObject
 
 @property (nonatomic, assign) NSInteger value;
@@ -19,6 +16,7 @@
 @property (nonatomic, readonly) NSDate *date;
 @property (nonatomic, assign) BOOL hasEvents;
 
+- (id)initWithDate:(NSDate *)date;
 - (id)initWithValue:(NSInteger)value Month:(NSInteger)month Year:(NSInteger)year Weekday:(NSInteger)weekday;
 - (BOOL)isBefore:(SSDayNode *)day;
 - (BOOL)isEqualToDate:(NSDate *)date;

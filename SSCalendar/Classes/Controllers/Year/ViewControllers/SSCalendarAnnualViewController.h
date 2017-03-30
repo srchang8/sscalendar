@@ -8,9 +8,6 @@
 
 //#import "SSContentViewController.h"
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
 @class SSCalendarAnnualDataSource;
 
 @interface SSCalendarAnnualViewController : UIViewController <UICollectionViewDelegate>

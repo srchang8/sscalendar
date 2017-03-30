@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Stellar16. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface SSCalendarUtils : NSObject
 
 + (NSBundle *)calendarBundle;
@@ -17,7 +15,12 @@
 + (NSInteger)numberDaysInYear:(NSInteger)year;
 + (NSInteger)numberOfDaysInMonth:(NSInteger)month Year:(NSInteger)year;
 + (NSInteger)numberOfDaysFrom:(NSDate *)startDate To:(NSDate *)endDate;
++ (NSInteger)numberOfMonthsFrom:(NSDate *)startDate To:(NSDate *)endDate;
++ (NSDateComponents *)componentsOfDate:(NSDate *)date; // day, month, year, weekday
++ (NSInteger)dayOfDate:(NSDate *)date;
 + (NSInteger)weekdayOfDate:(NSDate *)date;
++ (NSInteger)monthOfDate:(NSDate *)date;
++ (NSInteger)yearOfDate:(NSDate *)date;
 + (NSDate *)dateByAddingDays:(NSInteger)days To:(NSDate *)date;
 + (NSDate *)dateWithYear:(NSInteger)year Month:(NSInteger)month Day:(NSInteger)day;
 + (NSDateComponents *)dateComponentsWithYear:(NSInteger)year Month:(NSInteger)month Day:(NSInteger)day;

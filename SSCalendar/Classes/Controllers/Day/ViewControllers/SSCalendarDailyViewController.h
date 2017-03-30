@@ -6,9 +6,7 @@
 //  Copyright (c) 2013 Stellar16. All rights reserved.
 //
 
-
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+//#import "SSContentViewController.h"
 
 @class SSCalendarWeekViewController, SSCalendarDayViewController, SSDayNode, SSDataController;
 
@@ -33,7 +31,5 @@
 - (id)initWithEvents:(NSArray *)events;
 - (id)initWithDataController:(SSDataController *)dataController;
 - (IBAction)todayPressed:(id)sender;
-- (void)refresh;
-- (void)refreshEveything;
 
 @end

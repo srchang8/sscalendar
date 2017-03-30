@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,11 +31,8 @@
                     </constraints>
                 </view>
                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZXh-4o-ht4">
-                    <rect key="frame" x="0.0" y="18" width="375" height="215"/>
+                    <rect key="frame" x="0.0" y="18" width="375" height="605"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="215" id="Ric-V5-l9m"/>
-                    </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="9" id="xQx-eq-5k8">
                         <size key="itemSize" width="94" height="100"/>
                         <size key="headerReferenceSize" width="0.0" height="16"/>
@@ -44,15 +41,8 @@
                     </collectionViewFlowLayout>
                     <cells/>
                 </collectionView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rC0-rc-BVL" userLabel="Separator View">
-                    <rect key="frame" x="0.0" y="18" width="375" height="1"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="kKX-t4-J8j"/>
-                    </constraints>
-                </view>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3E-0N-LVu">
-                    <rect key="frame" x="0.0" y="233" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                     <items>
                         <barButtonItem title="Item" id="2Rk-gH-deO" userLabel="Today Bar Button Item">
                             <connections>
@@ -61,23 +51,30 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rC0-rc-BVL" userLabel="Separator View">
+                    <rect key="frame" x="0.0" y="18" width="375" height="1"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="kKX-t4-J8j"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="rC0-rc-BVL" firstAttribute="top" secondItem="9MD-IZ-tpd" secondAttribute="bottom" id="4GE-QX-a8d"/>
-                <constraint firstItem="ZXh-4o-ht4" firstAttribute="bottom" secondItem="f3E-0N-LVu" secondAttribute="top" id="52k-ON-TdY"/>
-                <constraint firstItem="9MD-IZ-tpd" firstAttribute="leading" secondItem="834-q0-v2v" secondAttribute="leading" id="BjW-QW-7mD"/>
-                <constraint firstItem="9MD-IZ-tpd" firstAttribute="leading" secondItem="rC0-rc-BVL" secondAttribute="leading" id="Cpd-Rs-mlP"/>
-                <constraint firstItem="9MD-IZ-tpd" firstAttribute="leading" secondItem="f3E-0N-LVu" secondAttribute="leading" id="IhO-N7-vgT"/>
-                <constraint firstItem="ZXh-4o-ht4" firstAttribute="top" secondItem="rC0-rc-BVL" secondAttribute="top" id="J31-us-KfJ"/>
-                <constraint firstItem="9MD-IZ-tpd" firstAttribute="trailing" secondItem="rC0-rc-BVL" secondAttribute="trailing" id="JBu-gy-ROa"/>
-                <constraint firstItem="9MD-IZ-tpd" firstAttribute="leading" secondItem="ZXh-4o-ht4" secondAttribute="leading" id="KJH-hI-aJd"/>
-                <constraint firstAttribute="trailing" secondItem="9MD-IZ-tpd" secondAttribute="trailing" id="M8S-8e-cGZ"/>
-                <constraint firstItem="9MD-IZ-tpd" firstAttribute="trailing" secondItem="ZXh-4o-ht4" secondAttribute="trailing" id="b6t-VQ-MSV"/>
-                <constraint firstItem="9MD-IZ-tpd" firstAttribute="top" secondItem="834-q0-v2v" secondAttribute="top" id="dhN-Bo-MSh"/>
-                <constraint firstItem="9MD-IZ-tpd" firstAttribute="trailing" secondItem="f3E-0N-LVu" secondAttribute="trailing" id="pKY-RS-tmm"/>
+                <constraint firstItem="ZXh-4o-ht4" firstAttribute="leading" secondItem="834-q0-v2v" secondAttribute="leading" id="GSY-29-45A"/>
+                <constraint firstItem="9MD-IZ-tpd" firstAttribute="top" secondItem="834-q0-v2v" secondAttribute="top" id="MLU-4e-o5o"/>
+                <constraint firstAttribute="trailing" secondItem="9MD-IZ-tpd" secondAttribute="trailing" id="Mj6-bK-7lh"/>
+                <constraint firstAttribute="trailing" secondItem="rC0-rc-BVL" secondAttribute="trailing" id="TLM-Kh-RGG"/>
+                <constraint firstItem="ZXh-4o-ht4" firstAttribute="trailing" secondItem="834-q0-v2v" secondAttribute="trailing" id="Wp9-68-pPn"/>
+                <constraint firstAttribute="bottom" secondItem="ZXh-4o-ht4" secondAttribute="bottom" constant="44" id="ZFr-M0-DWg"/>
+                <constraint firstItem="rC0-rc-BVL" firstAttribute="leading" secondItem="834-q0-v2v" secondAttribute="leading" id="cge-gE-3An"/>
+                <constraint firstItem="f3E-0N-LVu" firstAttribute="leading" secondItem="834-q0-v2v" secondAttribute="leading" id="f0T-hD-ZPx"/>
+                <constraint firstItem="9MD-IZ-tpd" firstAttribute="leading" secondItem="834-q0-v2v" secondAttribute="leading" id="fye-eP-SZM"/>
+                <constraint firstItem="rC0-rc-BVL" firstAttribute="top" secondItem="9MD-IZ-tpd" secondAttribute="bottom" id="gU5-zu-BAk"/>
+                <constraint firstItem="ZXh-4o-ht4" firstAttribute="top" secondItem="9MD-IZ-tpd" secondAttribute="bottom" id="qrN-Ho-pdN"/>
+                <constraint firstAttribute="trailing" secondItem="f3E-0N-LVu" secondAttribute="trailing" id="rfJ-Xd-Qlb"/>
+                <constraint firstAttribute="bottom" secondItem="f3E-0N-LVu" secondAttribute="bottom" id="uqH-cs-E4p"/>
             </constraints>
-            <point key="canvasLocation" x="72.5" y="59.5"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -77,12 +77,47 @@
     return days;
 }
 
++ (NSInteger)numberOfMonthsFrom:(NSDate *)startDate To:(NSDate *)endDate
+{
+    NSDate *fromDate;
+    NSDate *toDate;
+
+    NSCalendar *calendar = [SSCalendarUtils calendar];
+
+    [calendar rangeOfUnit:NSCalendarUnitMonth startDate:&fromDate interval:NULL forDate:startDate];
+    [calendar rangeOfUnit:NSCalendarUnitMonth startDate:&toDate interval:NULL forDate:endDate];
+
+    NSDateComponents *difference = [calendar components:NSCalendarUnitMonth fromDate:fromDate toDate:toDate options:0];
+
+    NSInteger months = difference.month;
+    return months;
+}
+
+
++ (NSDateComponents *)componentsOfDate:(NSDate *)date
+{
+    NSCalendar *calendar = [SSCalendarUtils calendar];
+    return [calendar components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear|NSCalendarUnitWeekday fromDate:date];
+}
 
 + (NSInteger)weekdayOfDate:(NSDate *)date
 {
-    NSCalendar *calendar = [SSCalendarUtils calendar];
-    NSDateComponents *comps = [calendar components:NSCalendarUnitWeekday fromDate:date];
-    return comps.weekday;
+    return [self componentsOfDate:date].weekday;
+}
+
++ (NSInteger)dayOfDate:(NSDate *)date
+{
+    return [self componentsOfDate:date].day;
+}
+
++ (NSInteger)monthOfDate:(NSDate *)date
+{
+    return [self componentsOfDate:date].month;
+}
+
++ (NSInteger)yearOfDate:(NSDate *)date
+{
+    return [self componentsOfDate:date].year;
 }
 
 

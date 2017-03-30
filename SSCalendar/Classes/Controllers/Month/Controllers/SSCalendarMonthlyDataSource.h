@@ -6,9 +6,6 @@
 //  Copyright (c) 2013 Stellar16. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
 @interface SSCalendarMonthlyDataSource : NSObject <UICollectionViewDataSource>
 
 @property (nonatomic, copy) NSArray *years;

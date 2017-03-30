@@ -6,9 +6,6 @@
 //  Copyright 2011 Stellar16. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
 @interface UIColor (StellarAdditions)
 
 + (UIColor *)colorWithHexString:(NSString *)hexString;

@@ -13,7 +13,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    self.headerReferenceSize = CGSizeMake(0, 34.0f);
     self.minimumInteritemSpacing = 0;
     self.minimumLineSpacing = 0;
 }
