@@ -24,6 +24,8 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSArray *weekdays = [dateFormatter veryShortWeekdaySymbols];
 
+    [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
     for (int i = 0; i < [weekdays count]; i++)
     {
         NSString *day = [weekdays objectAtIndex:i];
