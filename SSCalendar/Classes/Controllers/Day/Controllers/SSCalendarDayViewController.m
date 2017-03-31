@@ -25,7 +25,7 @@
         
         view.collectionViewLayout = [[SSCalendarDayLayout alloc] init];
         view.pagingEnabled = YES;
-
+        
         NSBundle *bundle = [SSCalendarUtils calendarBundle];
         [view registerNib:[UINib nibWithNibName:@"SSCalendarEventsCell" bundle:bundle] forCellWithReuseIdentifier:@"EventsCell"];
     }
@@ -82,22 +82,22 @@
     NSMutableArray *newVisibleDays = [NSMutableArray arrayWithObject:_day];
     
     NSInteger index = [SSCalendarUtils numberOfDaysFrom:startDate To:_day.date];
-
-    if (_day != [_days objectAtIndex:0])
+    
+    if (! [_day isEqual: [_days objectAtIndex:0]])
     {
         SSDayNode *previousDay = [_days objectAtIndex:index - 1];
         [newVisibleDays insertObject:previousDay atIndex:0];
     }
     
-    if (_day != [_days lastObject])
+    if (![_day isEqual: [_days lastObject]])
     {
         SSDayNode *nextDay = [_days objectAtIndex:index + 1];
         [newVisibleDays addObject:nextDay];
     }
-
+    
     self.visibleDays = newVisibleDays;
     [_view reloadData];
-
+    
     index = [_visibleDays indexOfObject:_day];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
     [_view scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
